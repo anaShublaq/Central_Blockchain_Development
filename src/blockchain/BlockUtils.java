@@ -33,7 +33,7 @@ public class BlockUtils extends Block {
     public Block getLatestBlock() throws IOException {
         String last = null, line;
         Block b;
-        try (BufferedReader in = new BufferedReader(new FileReader("C:\\Users\\HP\\Documents\\NetBeansProjects\\CentralBlockchain\\blockChain.txt"))) {
+        try (BufferedReader in = new BufferedReader(new FileReader("blockChain.txt"))) {
             b = null;
             while ((line = in.readLine()) != null) {
                 if (line != null) {
@@ -49,7 +49,7 @@ public class BlockUtils extends Block {
     // get the last Block Hash in BlockChain from file
     public String getLatestHash() throws FileNotFoundException, IOException {
         String last = null, line;
-        try (BufferedReader in = new BufferedReader(new FileReader("C:\\Users\\HP\\Documents\\NetBeansProjects\\CentralBlockchain\\blockChain.txt"))) {
+        try (BufferedReader in = new BufferedReader(new FileReader("blockChain.txt"))) {
             while ((line = in.readLine()) != null) {
                 if (line != null) {
                     last = line;
@@ -62,7 +62,7 @@ public class BlockUtils extends Block {
 
     // to create first Block in Chain (Genesis Block)
     public void createGenesisBlock() throws FileNotFoundException, IOException {
-        File file = new File("C:\\Users\\HP\\Documents\\NetBeansProjects\\CentralBlockchain\\blockChain.txt");
+        File file = new File("blockChain.txt");
         InputStreamReader streamReader = new InputStreamReader(new FileInputStream(file));
         BufferedReader br = new BufferedReader(streamReader);
         if (br.readLine() == null) {
@@ -84,7 +84,7 @@ public class BlockUtils extends Block {
         FileReader fr;
         String result = "";
         try {
-            fr = new FileReader(new File("C:\\Users\\HP\\Documents\\NetBeansProjects\\CentralBlockchain\\blockChain.txt"));
+            fr = new FileReader(new File("blockChain.txt"));
             try (BufferedReader br = new BufferedReader(fr)) {
                 String line = br.readLine();
                 while (line != null) {
@@ -108,7 +108,7 @@ public class BlockUtils extends Block {
     private boolean isChainValid() throws IOException {
         List<String> currentBlockHash = new ArrayList<>();
         List<String> previousBlockHash = new ArrayList<>();
-        try (BufferedReader bufReader = new BufferedReader(new FileReader("C:\\Users\\HP\\Documents\\NetBeansProjects\\CentralBlockchain\\blockChain.txt"))) {
+        try (BufferedReader bufReader = new BufferedReader(new FileReader("blockChain.txt"))) {
             String line = bufReader.readLine();
             while (line != null) {
                 String[] attributes = line.split(",");
@@ -152,7 +152,7 @@ public class BlockUtils extends Block {
     // save every new block created by miners into file
     public void saveBlockChain() throws FileNotFoundException, IOException {
         try {
-            FileWriter fstream = new FileWriter("C:\\Users\\HP\\Documents\\NetBeansProjects\\CentralBlockchain\\blockChain.txt", true);
+            FileWriter fstream = new FileWriter("blockChain.txt", true);
             try (BufferedWriter out = new BufferedWriter(fstream)) {
                 for (int i = 0; i < getBlockChain().size(); i++) {
                     Block b = (Block) getBlockChain().get(i);
